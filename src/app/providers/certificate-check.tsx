@@ -48,10 +48,15 @@ export const CertificateCheckProvider: FC<CertificateCheckProviderProps> = ({
       });
 
       clearTimeout(timeoutId);
-      
+
       console.log("[CertificateCheck] Response status:", response.status);
 
-      if (response.ok || response.status === 404 || response.status === 401 || response.status === 403) {
+      if (
+        response.ok ||
+        response.status === 404 ||
+        response.status === 401 ||
+        response.status === 403
+      ) {
         // Любой HTTP ответ означает, что сервер доступен и сертификат принят
         localStorage.setItem(CERTIFICATE_TRUSTED_KEY, "true");
         setStatus("trusted");
@@ -60,7 +65,7 @@ export const CertificateCheckProvider: FC<CertificateCheckProviderProps> = ({
       }
     } catch (error) {
       console.log("[CertificateCheck] Error:", error);
-      
+
       // Если ранее доверяли, возможно сервер просто недоступен
       // Даём шанс продолжить работу
       if (wasTrusted) {

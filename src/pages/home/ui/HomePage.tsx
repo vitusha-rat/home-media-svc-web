@@ -14,11 +14,11 @@ export const HomePage: FC = () => {
         className="text-center mb-8 sm:mb-12"
       >
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-surface-100 mb-3 sm:mb-4">
-          Welcome to Media Manager
+          Добро пожаловать в Media Manager
         </h1>
         <p className="text-sm sm:text-base md:text-lg text-surface-400 max-w-2xl mx-auto px-2">
-          Search for movies and TV shows across multiple torrent indexers, download them via your download client,
-          and manage your Plex library - all in one place.
+          Ищите фильмы и сериалы в различных торрент-индексерах, скачивайте их через клиент загрузок
+          и управляйте библиотекой Plex — всё в одном месте.
         </p>
       </motion.div>
 
@@ -37,10 +37,10 @@ export const HomePage: FC = () => {
                 </svg>
               </div>
               <h2 className="text-lg sm:text-xl font-semibold text-surface-100 mb-2">
-                Search Torrents
+                Поиск торрентов
               </h2>
               <p className="text-sm sm:text-base text-surface-400 px-2">
-                Find movies and TV shows with Dolby Atmos and 4K quality filters
+                Найдите фильмы и сериалы с фильтрами Dolby Atmos и 4K качества
               </p>
             </CardContent>
           </Card>
@@ -55,10 +55,10 @@ export const HomePage: FC = () => {
                 </svg>
               </div>
               <h2 className="text-lg sm:text-xl font-semibold text-surface-100 mb-2">
-                Downloads
+                Загрузки
               </h2>
               <p className="text-sm sm:text-base text-surface-400 px-2">
-                Monitor download progress and manage your queue
+                Отслеживайте прогресс загрузки и управляйте очередью
               </p>
             </CardContent>
           </Card>
@@ -71,7 +71,7 @@ export const HomePage: FC = () => {
         transition={{ delay: 0.3 }}
         className="mt-8 sm:mt-12 text-center text-surface-500 text-xs sm:text-sm px-4"
       >
-        <p>Powered by Prowlarr, Transmission/qBittorrent, and Plex</p>
+        <p>Управление медиа-библиотекой</p>
       </motion.div>
     </div>
   );

@@ -57,7 +57,7 @@ interface LoadingOverlayProps {
 }
 
 export const LoadingOverlay: FC<LoadingOverlayProps> = ({
-  message = "Loading...",
+  message = "Загрузка...",
 }) => {
   return (
     <div className="flex flex-col items-center justify-center gap-4 py-12">

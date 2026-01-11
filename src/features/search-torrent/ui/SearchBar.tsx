@@ -23,7 +23,7 @@ export const SearchBar: FC<SearchBarProps> = ({
         value={query}
         onChange={(e) => onQueryChange(e.target.value)}
         onKeyDown={onKeyDown}
-        placeholder="Search for movies or TV shows..."
+        placeholder="Поиск фильмов или сериалов..."
         className="flex-1"
         leftIcon={
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,7 +37,7 @@ export const SearchBar: FC<SearchBarProps> = ({
         disabled={query.trim().length < 2}
         className="w-full sm:w-auto"
       >
-        Search
+        Поиск
       </Button>
     </div>
   );

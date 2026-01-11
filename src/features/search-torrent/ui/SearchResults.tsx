@@ -23,7 +23,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
   downloadingId,
 }) => {
   if (isLoading) {
-    return <LoadingOverlay message="Searching..." />;
+    return <LoadingOverlay message="Поиск..." />;
   }
 
   if (!hasSearched) {
@@ -32,8 +32,8 @@ export const SearchResults: FC<SearchResultsProps> = ({
         <svg className="w-12 h-12 sm:w-16 sm:h-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
-        <p className="text-base sm:text-lg text-center">Enter a search query to find torrents</p>
-        <p className="text-xs sm:text-sm mt-1 text-center">Minimum 2 characters required</p>
+        <p className="text-base sm:text-lg text-center">Введите запрос для поиска торрентов</p>
+        <p className="text-xs sm:text-sm mt-1 text-center">Минимум 2 символа</p>
       </div>
     );
   }
@@ -44,8 +44,8 @@ export const SearchResults: FC<SearchResultsProps> = ({
         <svg className="w-12 h-12 sm:w-16 sm:h-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M12 20a8 8 0 100-16 8 8 0 000 16z" />
         </svg>
-        <p className="text-base sm:text-lg text-center">No results found</p>
-        <p className="text-xs sm:text-sm mt-1 text-center">Try a different search query</p>
+        <p className="text-base sm:text-lg text-center">Ничего не найдено</p>
+        <p className="text-xs sm:text-sm mt-1 text-center">Попробуйте другой запрос</p>
       </div>
     );
   }
@@ -53,7 +53,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
   return (
     <div className="space-y-3 sm:space-y-4">
       <p className="text-xs sm:text-sm text-surface-400">
-        Found {count} result{count !== 1 ? "s" : ""}
+        Найдено {count} {count === 1 ? "результат" : count < 5 ? "результата" : "результатов"}
       </p>
       <motion.div
         className="grid gap-2 sm:gap-3"

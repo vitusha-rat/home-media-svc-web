@@ -41,13 +41,13 @@ export const Header: FC = () => {
     scanPlexMutation.mutate(undefined, {
       onSuccess: (data) => {
         if (data.success) {
-          alert(`Plex library scan started successfully!\nScanned sections: ${data.scannedSections.join(", ")}`);
+          alert(`Обновление библиотеки запущено успешно!\nОбновлены разделы: ${data.scannedSections.join(", ")}`);
         } else {
-          alert(`Failed to scan Plex library: ${data.message}`);
+          alert(`Не удалось обновить библиотеку: ${data.message}`);
         }
       },
       onError: (error) => {
-        alert(`Error scanning Plex library: ${error instanceof Error ? error.message : "Unknown error"}`);
+        alert(`Ошибка при обновлении библиотеки: ${error instanceof Error ? error.message : "Неизвестная ошибка"}`);
       },
     });
   };
@@ -64,7 +64,7 @@ export const Header: FC = () => {
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold text-surface-100">Media Manager</h1>
-              <p className="text-xs text-surface-500">Plex + Prowlarr</p>
+              <p className="text-xs text-surface-500">Медиа-менеджер</p>
             </div>
           </Link>
 
@@ -80,9 +80,9 @@ export const Header: FC = () => {
                 </svg>
               }
               className="hidden sm:inline-flex"
-              title="Scan Plex Library"
+              title="Обновить TV библиотеку"
             >
-              Scan Plex
+              Обновить TV библиотеку
             </Button>
             <Button
               variant="ghost"
@@ -90,7 +90,7 @@ export const Header: FC = () => {
               onClick={handleScanPlex}
               isLoading={scanPlexMutation.isPending}
               className="sm:hidden p-2"
-              title="Scan Plex Library"
+              title="Обновить TV библиотеку"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -109,7 +109,7 @@ export const Header: FC = () => {
                   </svg>
                 }
               >
-                <span className="hidden sm:inline">Search</span>
+                <span className="hidden sm:inline">Поиск</span>
               </NavLink>
               <NavLink
                 to={ROUTES.DOWNLOADS}
@@ -119,7 +119,7 @@ export const Header: FC = () => {
                   </svg>
                 }
               >
-                <span className="hidden sm:inline">Downloads</span>
+                <span className="hidden sm:inline">Загрузки</span>
               </NavLink>
             </nav>
           </div>

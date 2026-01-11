@@ -29,6 +29,10 @@ interface ApiDownload {
   availability: number;
   time_active: number;
   time_active_formatted: string;
+  // Информация о перемещении
+  is_moving?: boolean;
+  move_progress?: number;
+  move_destination?: string | null;
 }
 
 interface ApiDownloadsResponse {
@@ -65,6 +69,9 @@ function mapDownload(apiDownload: ApiDownload): Download {
     availability: apiDownload.availability,
     timeActive: apiDownload.time_active,
     timeActiveFormatted: apiDownload.time_active_formatted,
+    isMoving: apiDownload.is_moving ?? false,
+    moveProgress: apiDownload.move_progress ?? 0,
+    moveDestination: apiDownload.move_destination ?? null,
   };
 }
 

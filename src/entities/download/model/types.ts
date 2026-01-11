@@ -36,6 +36,10 @@ export interface Download {
   availability: number;
   timeActive: number;
   timeActiveFormatted: string;
+  // Информация о перемещении
+  isMoving?: boolean;
+  moveProgress?: number;
+  moveDestination?: string | null;
 }
 
 export interface DownloadsListResponse {

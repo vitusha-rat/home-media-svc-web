@@ -51,6 +51,16 @@ export const DownloadItem: FC<DownloadItemProps> = ({
           </div>
 
           <Progress value={download.progress} size="md" />
+          
+          {download.isMoving && download.moveProgress !== undefined && (
+            <div className="space-y-1">
+              <div className="flex justify-between text-xs text-surface-400">
+                <span>Перемещение:</span>
+                <span className="text-surface-200">{download.moveProgress.toFixed(1)}%</span>
+              </div>
+              <Progress value={download.moveProgress} size="sm" className="h-1" />
+            </div>
+          )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-xs text-surface-400">
             <div className="flex justify-between">

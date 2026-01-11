@@ -41,21 +41,26 @@ export const CertificateCheckProvider: FC<CertificateCheckProviderProps> = ({
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-      const response = await fetch(`${API_URL}/health`, {
+      // Используем реальный endpoint API
+      const response = await fetch(`${API_URL}/downloads`, {
         method: "GET",
         signal: controller.signal,
       });
 
       clearTimeout(timeoutId);
+      
+      console.log("[CertificateCheck] Response status:", response.status);
 
-      if (response.ok || response.status === 404) {
-        // Даже 404 означает, что сервер доступен и сертификат принят
+      if (response.ok || response.status === 404 || response.status === 401 || response.status === 403) {
+        // Любой HTTP ответ означает, что сервер доступен и сертификат принят
         localStorage.setItem(CERTIFICATE_TRUSTED_KEY, "true");
         setStatus("trusted");
       } else {
         throw new Error("API not accessible");
       }
-    } catch {
+    } catch (error) {
+      console.log("[CertificateCheck] Error:", error);
+      
       // Если ранее доверяли, возможно сервер просто недоступен
       // Даём шанс продолжить работу
       if (wasTrusted) {

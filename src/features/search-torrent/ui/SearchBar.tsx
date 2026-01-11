@@ -18,7 +18,7 @@ export const SearchBar: FC<SearchBarProps> = ({
   isLoading,
 }) => {
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
       <Input
         value={query}
         onChange={(e) => onQueryChange(e.target.value)}
@@ -35,6 +35,7 @@ export const SearchBar: FC<SearchBarProps> = ({
         onClick={onSearch}
         isLoading={isLoading}
         disabled={query.trim().length < 2}
+        className="w-full sm:w-auto"
       >
         Search
       </Button>

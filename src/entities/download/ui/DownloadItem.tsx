@@ -42,17 +42,17 @@ export const DownloadItem: FC<DownloadItemProps> = ({
       exit={{ opacity: 0, y: -20 }}
     >
       <Card className="group">
-        <div className="flex flex-col gap-3">
-          <div className="flex items-start justify-between gap-4">
-            <h3 className="text-sm font-medium text-surface-100 line-clamp-2 flex-1">
+        <div className="flex flex-col gap-2 sm:gap-3">
+          <div className="flex items-start justify-between gap-2 sm:gap-4">
+            <h3 className="text-xs sm:text-sm font-medium text-surface-100 line-clamp-2 flex-1">
               {download.name}
             </h3>
-            <Badge variant={config.variant}>{config.label}</Badge>
+            <Badge variant={config.variant} className="text-xs flex-shrink-0">{config.label}</Badge>
           </div>
 
           <Progress value={download.progress} size="md" />
 
-          <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs text-surface-400">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-xs text-surface-400">
             <div className="flex justify-between">
               <span>Прогресс:</span>
               <span className="text-surface-200">{download.progress.toFixed(1)}%</span>
@@ -134,8 +134,8 @@ export const DownloadItem: FC<DownloadItemProps> = ({
             </div>
           )}
 
-          <div className="flex items-center justify-between pt-2 border-t border-surface-800">
-            <span className="text-xs text-surface-500 truncate max-w-[70%]" title={download.savePath}>
+          <div className="flex items-center justify-between pt-2 border-t border-surface-800 gap-2">
+            <span className="text-xs text-surface-500 truncate flex-1 min-w-0" title={download.savePath}>
               {download.savePath}
             </span>
 

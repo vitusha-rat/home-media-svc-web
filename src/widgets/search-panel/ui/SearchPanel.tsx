@@ -28,8 +28,8 @@ export const SearchPanel: FC = () => {
   const { downloadingId, handleDownload } = useDownloadTorrentFeature();
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-4">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="space-y-3 sm:space-y-4">
         <SearchBar
           query={query}
           onQueryChange={setQuery}
@@ -50,7 +50,7 @@ export const SearchPanel: FC = () => {
       </div>
 
       {hasSearched && count !== totalCount && (
-        <p className="text-xs text-surface-500">
+        <p className="text-xs text-surface-500 px-1">
           Показано {count} из {totalCount} результатов (отфильтровано {totalCount - count})
         </p>
       )}

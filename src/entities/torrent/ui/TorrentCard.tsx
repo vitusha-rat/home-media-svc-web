@@ -29,19 +29,19 @@ export const TorrentCard: FC<TorrentCardProps> = ({
         hasLowSeeders && "border-yellow-500/30 bg-yellow-500/5"
       )}
     >
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         {torrent.posterUrl && (
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex justify-center sm:justify-start">
             <img
               src={torrent.posterUrl}
               alt={torrent.title}
-              className="w-20 h-28 object-cover rounded-lg shadow-lg"
+              className="w-16 h-24 sm:w-20 sm:h-28 object-cover rounded-lg shadow-lg"
               loading="lazy"
             />
           </div>
         )}
-        <div className="flex flex-col gap-3 flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-2 sm:gap-3 flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2 sm:gap-4">
             <h3 className="text-sm font-medium text-surface-100 line-clamp-2 flex-1">
               {torrent.title}
             </h3>
@@ -51,7 +51,7 @@ export const TorrentCard: FC<TorrentCardProps> = ({
             </div>
           </div>
 
-        <div className="flex items-center gap-4 text-xs text-surface-400">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-surface-400">
           <span className="flex items-center gap-1">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

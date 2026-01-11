@@ -28,7 +28,7 @@ const FilterCheckbox: FC<FilterCheckboxProps> = ({
 }) => (
   <label
     className={cn(
-      "flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200",
+      "flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200",
       checked
         ? "bg-primary-600/20 text-primary-400 border border-primary-500/30"
         : "bg-surface-800/50 text-surface-400 border border-surface-700 hover:border-surface-600",
@@ -43,7 +43,7 @@ const FilterCheckbox: FC<FilterCheckboxProps> = ({
     />
     <div
       className={cn(
-        "w-4 h-4 rounded border-2 flex items-center justify-center transition-colors",
+        "w-4 h-4 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0",
         checked
           ? "bg-primary-600 border-primary-600"
           : "border-surface-500"
@@ -55,7 +55,7 @@ const FilterCheckbox: FC<FilterCheckboxProps> = ({
         </svg>
       )}
     </div>
-    <span className="text-sm font-medium">{label}</span>
+    <span className="text-xs sm:text-sm font-medium whitespace-nowrap">{label}</span>
   </label>
 );
 
@@ -70,8 +70,8 @@ export const AtmosFilter: FC<AtmosFilterProps> = ({
   onMinSeedersChange,
 }) => {
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      <span className="text-sm text-surface-500">Фильтры:</span>
+    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+      <span className="text-xs sm:text-sm text-surface-500 w-full sm:w-auto">Фильтры:</span>
       <FilterCheckbox
         checked={filterAtmos}
         onChange={onFilterAtmosChange}
@@ -90,15 +90,15 @@ export const AtmosFilter: FC<AtmosFilterProps> = ({
         />
       )}
       {onMinSeedersChange && (
-        <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-800/50 border border-surface-700">
-          <span className="text-sm text-surface-400">Мин. сидов:</span>
+        <div className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg bg-surface-800/50 border border-surface-700">
+          <span className="text-xs sm:text-sm text-surface-400">Мин. сидов:</span>
           <input
             type="number"
             min={0}
             max={100}
             value={minSeeders}
             onChange={(e) => onMinSeedersChange(Math.max(0, parseInt(e.target.value) || 0))}
-            className="w-14 px-2 py-1 text-sm bg-surface-900 border border-surface-600 rounded text-surface-200 focus:outline-none focus:border-primary-500"
+            className="w-12 sm:w-14 px-2 py-1 text-xs sm:text-sm bg-surface-900 border border-surface-600 rounded text-surface-200 focus:outline-none focus:border-primary-500"
           />
         </div>
       )}

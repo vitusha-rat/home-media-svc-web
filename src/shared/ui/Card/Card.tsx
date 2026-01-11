@@ -16,7 +16,7 @@ export const Card: FC<CardProps> = ({
   return (
     <div
       className={cn(
-        "bg-surface-900/50 border border-surface-800 rounded-xl p-4",
+        "bg-surface-900/50 border border-surface-800 rounded-xl p-3 sm:p-4",
         "backdrop-blur-sm",
         variant === "interactive" &&
           "hover:border-surface-700 hover:bg-surface-900/70 transition-all duration-200 cursor-pointer",

@@ -1,7 +1,13 @@
 import { useState, useEffect, type FC, type ReactNode, useCallback } from "react";
 
 // URL бэкенда для проверки сертификата
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+// Убираем trailing slash если есть
+const RAW_API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_URL = RAW_API_URL.replace(/\/+$/, "");
+
+// Debug: выводим URL при инициализации
+console.log("[CertificateCheck] API_URL:", API_URL);
+console.log("[CertificateCheck] VITE_API_URL env:", import.meta.env.VITE_API_URL);
 
 // Ключ для localStorage
 const CERTIFICATE_TRUSTED_KEY = "api_certificate_trusted";

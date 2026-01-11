@@ -34,7 +34,25 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Get repository name
+        id: repo
+        run: |
+          REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
+          # Если репозиторий - это пользовательский сайт (username.github.io), base = '/'
+          # Иначе base = '/repository-name/'
+          if [[ "$REPO_NAME" == *.github.io ]]; then
+            BASE_PATH="/"
+          else
+            BASE_PATH="/$REPO_NAME/"
+          fi
+          echo "Repository: $REPO_NAME"
+          echo "Base path: $BASE_PATH"
+          echo "base_path=$BASE_PATH" >> $GITHUB_OUTPUT
+
       - name: Build
+        env:
+          VITE_BASE_PATH: ${{ steps.repo.outputs.base_path }}
+          VITE_API_URL: https://130.193.44.49/api/v1/
         run: yarn build
 
       - name: Setup 404 page for SPA

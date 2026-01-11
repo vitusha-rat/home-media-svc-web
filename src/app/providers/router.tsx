@@ -8,8 +8,12 @@ import { ROUTES } from "@/shared/config";
 import { Header } from "@/widgets/header";
 
 export const AppRouter: FC = () => {
+  // Используем base URL из Vite конфигурации
+  // import.meta.env.BASE_URL автоматически содержит base path
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <div className="min-h-screen bg-surface-950">
         <Header />
         <main>

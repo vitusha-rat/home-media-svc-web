@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Медиа-менеджер - Поиск и загрузка торрентов" />
+    <title>Media Manager</title>
+    <script>
+      // GitHub Pages SPA redirect
+      // Перенаправляем все запросы на index.html для работы React Router
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      // Убираем trailing slash и перенаправляем
+      var newPath = path.replace(/\/$/, '') || '/';
+      if (path !== newPath || search || hash) {
+        window.location.replace(newPath + search + hash);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

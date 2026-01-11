@@ -4,12 +4,30 @@ import type { FC } from "react";
 import { cn } from "@/shared/lib";
 import { Badge, Card } from "@/shared/ui";
 
-import type { Torrent } from "../model/types";
+import type { Torrent, VideoQuality } from "../model/types";
 
 interface TorrentCardProps {
   torrent: Torrent;
   onDownload?: (torrent: Torrent) => void;
   isDownloading?: boolean;
+}
+
+// Функция для определения варианта бейджа качества
+function getQualityBadgeVariant(quality: VideoQuality): "info" | "success" | "warning" | "accent" | "default" {
+  switch (quality) {
+    case "4K":
+      return "info";
+    case "Remux":
+      return "success";
+    case "1080p":
+    case "BluRay":
+      return "accent";
+    case "WEB-DL":
+      return "warning";
+    case "720p":
+    default:
+      return "default";
+  }
 }
 
 export const TorrentCard: FC<TorrentCardProps> = ({
@@ -45,9 +63,13 @@ export const TorrentCard: FC<TorrentCardProps> = ({
             <h3 className="text-sm font-medium text-surface-100 line-clamp-2 flex-1">
               {torrent.title}
             </h3>
-            <div className="flex gap-1.5 flex-shrink-0">
+            <div className="flex flex-wrap gap-1.5 flex-shrink-0 justify-end">
+              {torrent.category && torrent.category !== "Unknown" && (
+                <Badge variant={getQualityBadgeVariant(torrent.category)}>
+                  {torrent.category}
+                </Badge>
+              )}
               {torrent.isAtmos && <Badge variant="accent">Atmos</Badge>}
-              {torrent.is4k && <Badge variant="info">4K</Badge>}
             </div>
           </div>
 
@@ -74,10 +96,6 @@ export const TorrentCard: FC<TorrentCardProps> = ({
             {torrent.leechers} пиров
           </span>
         </div>
-
-        {torrent.category && (
-          <span className="text-xs text-surface-500">{torrent.category}</span>
-        )}
 
         {hasNoSeeders && (
           <motion.div

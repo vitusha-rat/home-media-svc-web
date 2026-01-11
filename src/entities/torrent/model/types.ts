@@ -1,3 +1,9 @@
+// Тип медиа-контента для фильтрации
+export type MediaType = "movies" | "tv" | "all";
+
+// Качество видео (из поля category в ответе API)
+export type VideoQuality = "4K" | "1080p" | "720p" | "Remux" | "WEB-DL" | "BluRay" | "Unknown";
+
 export interface Torrent {
   id: string;
   title: string;
@@ -6,12 +12,21 @@ export interface Torrent {
   seeders: number;
   leechers: number;
   url: string;
-  category: string | null;
+  category: VideoQuality | null;
   isAtmos: boolean;
   is4k: boolean;
   downloadUrl?: string;
   indexerId?: number;
   posterUrl?: string;
+}
+
+export interface TorrentSearchParams {
+  query: string;
+  mediaType?: MediaType;
+  minSeeders?: number;
+  includeNoSeeders?: boolean;
+  filterAtmos?: boolean;
+  filter4k?: boolean;
 }
 
 export interface TorrentSearchResponse {

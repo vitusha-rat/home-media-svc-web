@@ -1,35 +1,35 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { torrentApi } from "../api/torrentApi";
-import type { DownloadTorrentRequest } from "./types";
+import type { DownloadTorrentRequest, TorrentSearchParams } from "./types";
 
 export const torrentKeys = {
   all: ["torrents"] as const,
-  search: (query: string, category?: number, filterAtmos?: boolean, filter4k?: boolean) =>
-    [...torrentKeys.all, "search", { query, category, filterAtmos, filter4k }] as const,
+  search: (params: Omit<TorrentSearchParams, "query"> & { query: string }) =>
+    [...torrentKeys.all, "search", params] as const,
 };
 
-interface UseSearchTorrentsParams {
-  query: string;
-  category?: number;
-  filterAtmos?: boolean;
-  filter4k?: boolean;
+interface UseSearchTorrentsParams extends TorrentSearchParams {
   enabled?: boolean;
 }
 
 export function useSearchTorrents({
   query,
-  category,
+  mediaType = "movies",
+  minSeeders = 0,
+  includeNoSeeders = true,
   filterAtmos,
   filter4k,
   enabled = true,
 }: UseSearchTorrentsParams) {
   return useQuery({
-    queryKey: torrentKeys.search(query, category, filterAtmos, filter4k),
+    queryKey: torrentKeys.search({ query, mediaType, minSeeders, includeNoSeeders, filterAtmos, filter4k }),
     queryFn: () =>
       torrentApi.search({
         query,
-        category,
+        mediaType,
+        minSeeders,
+        includeNoSeeders,
         filterAtmos,
         filter4k,
       }),

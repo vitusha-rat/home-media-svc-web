@@ -2,23 +2,24 @@ import type { FC } from "react";
 
 import { useDownloadTorrentFeature } from "@/features/download-torrent";
 import { AtmosFilter } from "@/features/filter-atmos";
-import { SearchBar, SearchResults, useSearchTorrent } from "@/features/search-torrent";
+import { MediaTypeSelector, SearchBar, SearchResults, useSearchTorrent } from "@/features/search-torrent";
 
 export const SearchPanel: FC = () => {
   const {
     query,
     setQuery,
+    mediaType,
+    setMediaType,
     filterAtmos,
     setFilterAtmos,
     filter4k,
     setFilter4k,
-    hideNoSeeders,
-    setHideNoSeeders,
+    includeNoSeeders,
+    setIncludeNoSeeders,
     minSeeders,
     setMinSeeders,
     torrents,
     count,
-    totalCount,
     isLoading,
     handleSearch,
     handleKeyDown,
@@ -37,23 +38,21 @@ export const SearchPanel: FC = () => {
           onKeyDown={handleKeyDown}
           isLoading={isLoading}
         />
+        <MediaTypeSelector
+          value={mediaType}
+          onChange={setMediaType}
+        />
         <AtmosFilter
           filterAtmos={filterAtmos}
           onFilterAtmosChange={setFilterAtmos}
           filter4k={filter4k}
           onFilter4kChange={setFilter4k}
-          hideNoSeeders={hideNoSeeders}
-          onHideNoSeedersChange={setHideNoSeeders}
+          includeNoSeeders={includeNoSeeders}
+          onIncludeNoSeedersChange={setIncludeNoSeeders}
           minSeeders={minSeeders}
           onMinSeedersChange={setMinSeeders}
         />
       </div>
-
-      {hasSearched && count !== totalCount && (
-        <p className="text-xs text-surface-500 px-1">
-          Показано {count} из {totalCount} результатов (отфильтровано {totalCount - count})
-        </p>
-      )}
 
       <SearchResults
         torrents={torrents}

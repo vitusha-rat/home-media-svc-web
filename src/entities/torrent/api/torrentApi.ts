@@ -3,15 +3,10 @@ import { apiClient } from "@/shared/api";
 import type {
   DownloadTorrentRequest,
   Torrent,
+  TorrentSearchParams,
   TorrentSearchResponse,
+  VideoQuality,
 } from "../model/types";
-
-interface SearchParams {
-  query: string;
-  category?: number;
-  filterAtmos?: boolean;
-  filter4k?: boolean;
-}
 
 interface ApiTorrent {
   id: string;
@@ -21,7 +16,7 @@ interface ApiTorrent {
   seeders: number;
   leechers: number;
   url: string;
-  category: string | null;
+  category: VideoQuality | null;
   is_atmos: boolean;
   is_4k: boolean;
   download_url?: string;
@@ -56,14 +51,18 @@ function mapTorrent(apiTorrent: ApiTorrent): Torrent {
 export const torrentApi = {
   search: async ({
     query,
-    category,
+    mediaType = "movies",
+    minSeeders = 0,
+    includeNoSeeders = true,
     filterAtmos,
     filter4k,
-  }: SearchParams): Promise<TorrentSearchResponse> => {
+  }: TorrentSearchParams): Promise<TorrentSearchResponse> => {
     const response = await apiClient.get<ApiSearchResponse>("/torrents/search", {
       params: {
         q: query,
-        category,
+        media_type: mediaType,
+        min_seeders: minSeeders,
+        include_no_seeders: includeNoSeeders,
         filter_atmos: filterAtmos,
         filter_4k: filter4k,
       },

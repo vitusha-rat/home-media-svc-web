@@ -7,8 +7,8 @@ interface AtmosFilterProps {
   onFilterAtmosChange: (value: boolean) => void;
   filter4k: boolean;
   onFilter4kChange: (value: boolean) => void;
-  hideNoSeeders?: boolean;
-  onHideNoSeedersChange?: (value: boolean) => void;
+  includeNoSeeders?: boolean;
+  onIncludeNoSeedersChange?: (value: boolean) => void;
   minSeeders?: number;
   onMinSeedersChange?: (value: number) => void;
 }
@@ -64,8 +64,8 @@ export const AtmosFilter: FC<AtmosFilterProps> = ({
   onFilterAtmosChange,
   filter4k,
   onFilter4kChange,
-  hideNoSeeders = true,
-  onHideNoSeedersChange,
+  includeNoSeeders = true,
+  onIncludeNoSeedersChange,
   minSeeders = 0,
   onMinSeedersChange,
 }) => {
@@ -82,24 +82,29 @@ export const AtmosFilter: FC<AtmosFilterProps> = ({
         onChange={onFilter4kChange}
         label="4K UHD"
       />
-      {onHideNoSeedersChange && (
+      {onIncludeNoSeedersChange && (
         <FilterCheckbox
-          checked={hideNoSeeders}
-          onChange={onHideNoSeedersChange}
-          label="Скрыть без сидов"
+          checked={includeNoSeeders}
+          onChange={onIncludeNoSeedersChange}
+          label="Показывать без сидов"
         />
       )}
       {onMinSeedersChange && (
         <div className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg bg-surface-800/50 border border-surface-700">
           <span className="text-xs sm:text-sm text-surface-400">Мин. сидов:</span>
-          <input
-            type="number"
-            min={0}
-            max={100}
+          <select
             value={minSeeders}
-            onChange={(e) => onMinSeedersChange(Math.max(0, parseInt(e.target.value) || 0))}
-            className="w-12 sm:w-14 px-2 py-1 text-xs sm:text-sm bg-surface-900 border border-surface-600 rounded text-surface-200 focus:outline-none focus:border-primary-500"
-          />
+            onChange={(e) => onMinSeedersChange(parseInt(e.target.value) || 0)}
+            className="px-2 py-1 text-xs sm:text-sm bg-surface-900 border border-surface-600 rounded text-surface-200 focus:outline-none focus:border-primary-500 cursor-pointer"
+          >
+            <option value={0}>0</option>
+            <option value={1}>1</option>
+            <option value={3}>3</option>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+          </select>
         </div>
       )}
     </div>

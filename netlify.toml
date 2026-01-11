@@ -3,26 +3,9 @@
   command = "yarn build"
   # Директория с собранными файлами
   publish = "dist"
-  # Директория с Netlify Functions
-  functions = "netlify/functions"
-
-# ВАЖНО: Порядок redirects имеет значение!
-# Более специфичные правила должны быть ПЕРВЫМИ
-
-# Прокси для API запросов к HTTP бэкенду через Netlify Functions
-# Все запросы к /api/v1/* будут проксироваться через функцию proxy
-# ВАЖНО: Установите VITE_API_URL в Netlify Dashboard → Site settings → Environment variables
-# Например: VITE_API_URL=http://46.149.69.95:8000
-# Без /api/v1 в конце, так как это добавляется автоматически
-[[redirects]]
-  from = "/api/v1/*"
-  to = "/.netlify/functions/proxy"
-  status = 200
-  force = true
 
 # Редиректы для SPA (Single Page Application)
-# Все остальные запросы перенаправляются на index.html для работы React Router
-# Этот редирект должен быть последним, чтобы не перехватывать API запросы
+# Все запросы перенаправляются на index.html для работы React Router
 [[redirects]]
   from = "/*"
   to = "/index.html"

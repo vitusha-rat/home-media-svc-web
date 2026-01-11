@@ -1,4 +1,10 @@
-import { useState, useEffect, type FC, type ReactNode, useCallback } from "react";
+import {
+  useState,
+  useEffect,
+  type FC,
+  type ReactNode,
+  useCallback,
+} from "react";
 
 // URL бэкенда для проверки сертификата
 // Убираем trailing slash если есть
@@ -7,7 +13,10 @@ const API_URL = RAW_API_URL.replace(/\/+$/, "");
 
 // Debug: выводим URL при инициализации
 console.log("[CertificateCheck] API_URL:", API_URL);
-console.log("[CertificateCheck] VITE_API_URL env:", import.meta.env.VITE_API_URL);
+console.log(
+  "[CertificateCheck] VITE_API_URL env:",
+  import.meta.env.VITE_API_URL
+);
 
 // Ключ для localStorage
 const CERTIFICATE_TRUSTED_KEY = "api_certificate_trusted";
@@ -77,7 +86,9 @@ export const CertificateCheckProvider: FC<CertificateCheckProviderProps> = ({
       <div className="certificate-check">
         <div className="certificate-check__content">
           <div className="certificate-check__spinner" />
-          <p className="certificate-check__text">Проверка подключения к серверу...</p>
+          <p className="certificate-check__text">
+            Проверка подключения к серверу...
+          </p>
         </div>
 
         <style>{`
@@ -124,9 +135,11 @@ export const CertificateCheckProvider: FC<CertificateCheckProviderProps> = ({
       <div className="certificate-trust">
         <div className="certificate-trust__card">
           <div className="certificate-trust__icon">🔐</div>
-          
-          <h1 className="certificate-trust__title">Требуется доверие сертификату</h1>
-          
+
+          <h1 className="certificate-trust__title">
+            Требуется доверие сертификату
+          </h1>
+
           <p className="certificate-trust__description">
             Для работы приложения необходимо принять SSL-сертификат сервера.
             Нажмите кнопку ниже, чтобы открыть сервер и подтвердить доверие.
@@ -158,7 +171,7 @@ export const CertificateCheckProvider: FC<CertificateCheckProviderProps> = ({
             >
               🌐 Открыть сервер
             </button>
-            
+
             <button
               onClick={handleRetry}
               className="certificate-trust__button certificate-trust__button--secondary"
